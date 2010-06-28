@@ -1,24 +1,22 @@
 .modal{
   background-color:rgba(0,0,0,.15);
-  height:0;
-  margin-left:-100px;
-  opacity:0;
   overflow:hidden;
   position:fixed;
-  top:200px;left:50%;
-  width:300px;
+  top:150px;left:50%;/*This prevents collision with z-indexing in the header; horizontal left offset must be handled case-by-case due to differing modal widths*/
   z-index:15;
 }
   .modal .shadow{
   	background-color:#fff;
     border:2px solid #999;
-    box-shadow:0 0 15px rgba(0,0,0,.5);
-    margin:15px;
-    padding:20px 10px 10px;
-    -moz-box-shadow:0 0 15px rgba(0,0,0,.5);
-    -webkit-box-shadow:0 0 15px rgba(0,0,0,.5);
+    box-shadow:0 0 20px rgba(0,0,0,.5);
+    margin:20px;
+    padding:20px 10px 0;
+    -moz-box-shadow:0 0 20px rgba(0,0,0,.5);
+    -webkit-box-shadow:0 0 20px rgba(0,0,0,.5);
 		box-shadow:0 0 15px rgba(0,0,0,.5);
+		overflow:hidden;
     position:relative;
+		width:auto;
   }
 		/*IE8 shadow uses MS blur filter*/
 		.ie8 .ie-shadow{
@@ -36,25 +34,19 @@
 		.ie6 .ie-shadow{border:15px solid #eee;}
 			.ie7 .shadow,
 			.ie6 .shadow{margin:0;}
-  .modal p{font-size:16px;}
-	/*TK modal specifics*/
-	#modalWindow.tk p{font:normal 16px Arial,sans-serif;}
-  #modalWindow.tk a{text-decoration:underline !important;}
-		#modalWindow.tk .close a{text-decoration:none !important;}
-	/*WC modal specifics*/
-  #modalWindow.wc a:hover{color:#8771A0;}
-  .show{
-  	display:block !important;
-  	height:auto !important;
-    opacity:1 !important;
-  }
-  .modal h1{margin:0 0 1em;}
+  .modal h1{
+		border-bottom:1px solid #ddd;
+		font:normal 20px/20px Arial,sans-serif;
+		margin:0 0 10px;
+		padding:10px 0;
+		text-align:center;
+	}
   .closeContainer{
     background-color:#e2e2e2;
     color:#777;
   	font:bold 15px sans-serif;
   	line-height:10px;
-	padding:1px 0 4px;
+		padding:1px 0 4px;
   	position:absolute;
   	text-align:right;
   	top:0;left:0;
@@ -65,6 +57,28 @@
 			cursor:pointer;
   	}
   	.closeContainer .close a{color:#777 !important;text-decoration:none !important;}
-	.modal span{display:none;}
-		.modal span.show{display:block;}
-		.modal .closeContainer span{display:inline;}
+	/*Notification modals*/
+	.modal.notification{
+		font-size:14px;
+		margin-left:-215px;
+		text-align:center;
+		width:431px;
+	}
+		.modal.notification .shadow{padding-bottom:20px;}
+		.modal.notification h1{
+			border-bottom:0;
+			color:#f58023;
+			margin:0;
+			padding-top:20px;
+		}
+		.modal.notification p{
+			margin:0 0 15px;
+		}
+		.modal.notification button{
+			background-color:#fff;
+			border:1px solid #f58023;
+			color:#f58023;
+			font:bold 13px Arial,sans-serif;
+			margin:0 2px;
+			padding:2px 4px;
+		}

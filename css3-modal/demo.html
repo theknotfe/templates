@@ -7,12 +7,100 @@
 	<meta charset="utf-8" />
 	<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge" /><![endif]-->
 	
+	<!--
+	Hi, view-sourcers! This is a demo template for modal popups used on The Knot properties.
+	It's based off of a spec by our design team, and a few different implementations are demo'ed.
+	-->
+	
 	<title>Yet another HTML5 template, with jQuery</title>
 	
 	<!--Modernizr should be the only script in the head-->
 	<script src="http://media.theknot.com/jscripts/shared/modernizr-1.5.min.js"></script>
 	
 	<link rel="stylesheet" href="modal.css" />
+	
+	<style>
+		/*For demonstration's sake to see the modals. The below styling should be handled by non-modal scripts on our normal templates.*/
+		body{font:normal 11px Arial,sans-serif;}
+		.tk{color:#1f1f1f;}
+			.tk a:link,
+			.tk a:visited{color:#1f1f1f;}
+			.tk a:active,
+			.tk a:hover{color:#4e8abe;}
+			.tk h1,
+			.tk h2{color:#4e8abe;}
+			.tk button{background-color:#4e8abe;}
+		input{border:1px solid #ccc;}
+		button{
+			border:none;
+			color:#fff;
+			font:bold 11px/15px Arial,sans-serif;
+			margin:0;
+			padding:2px;
+			text-transform:uppercase;
+		}
+			.tk button{background-color:#4e8abe;}
+		.modal{
+			margin-top:10px;
+			position:relative;
+			top:auto;
+		}
+		/*Modal-specific styles*/
+		/*ODB National Image modal*/
+		#modal1{
+			margin-left:-247px;
+			width:514px;/*Based off of total width, including 20px shadow*/
+		}
+			#modal1 p{margin:0 0 10px;}
+			#modal1 img{max-width:450px;}
+			
+		/*Form modal*/
+		#modal2{
+			margin-left:-315px;
+			width:630px;
+		}
+			#modal2 #search{
+				background-color:#EBF4FB;
+				margin-bottom:20px;
+				padding:15px;
+			}
+				#modal2 #search h2{
+					font:bold 11px Arial,sans-serif;
+					margin:0 0 10px;
+					padding:0;
+					text-align:left;
+					text-transform:lowercase;
+				}
+				#modal2 #search label{display:none;}
+				#modal2 #search fieldset{
+					border:none;
+					display:inline;
+					margin:0;
+					padding:0;
+				}
+				#modal2 table{
+					margin-bottom:5px;
+					text-align:left;
+					width:100%;
+				}
+					#modal2 th,#modal2 td{
+						border-bottom:1px solid #ccc;
+						padding:3px 0;
+					}
+				#modal2 nav{
+					display:block;
+					text-align:right;
+				}
+				#modal2 .submit{
+					float:right;
+					font-size:10px;
+					text-align:center;
+					width:59px;
+				}
+				#modal2 .checkbox{
+					text-align:center;
+				}
+	</style>
 	
 </head>
 
@@ -21,19 +109,106 @@
 <!--[if IE 8 ]><body class="ie ie8"><![endif]--> 
 <!--[if !IE]>--><body><!--<![endif]-->
 
-	<div class="wrap">
-		<div class="modal show" id="modalWindow">
+	<div class="wrap tk">
+		<!--Modal 1 - large national image popup-->
+		<div class="modal show" id="modal1">
 			<div class="ie-shadow">
 				<div class="shadow">
 					<h1>This is a modal header</h1>
 					
-					<p>This is some modal text.</p>
+					<p><img src="http://media.theknot.com/ImageStage/Objects/0027/0068483/larger_image.jpg" alt="Demo image from national." /></p>
+					<div class="closeContainer"><span class="close">x</span></div>
+
+				</div>
+			</div>
+		</div>
+		
+		<!--Modal 2 - paginated data list, form, and button-->
+		<div class="modal show" id="modal2">
+			<div class="ie-shadow">
+				<div class="shadow">
+					<h1>Add/Remove My Registries</h1>
+					
+					<form id="search" name="search"><!--This <form> element should be left out in .NET due to webforms-->
+						<h2>Enter your First and Last Name</h2>
+						<fieldset>
+							<label>First Name</label>
+							<input type="text" placeholder="First Name" id="fname" name="fname" />
+						</fieldset>
+						<fieldset>
+							<label>Last Name</label>
+							<input type="text" placeholder="Last Name" id="lname" name="lname" />
+						</fieldset>
+						<button>Search</button>
+					</form>
+					
+					<form id="results" name="results">
+						<table cellspacing="0">
+							<thead>
+								<tr>
+									<th><a href="#">Bride's Name</a></th>
+									<th><a href="#">Groom's Name</a></th>
+									<th><a href="#">Event Date</a></th>
+									<th><a href="#">Retailer</a></th>
+									<th class="checkbox">Add to My Knot</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Sally Gettinghitched</td>
+									<td>Bobby Fiance</td>
+									<td>05/05/2010</td>
+									<td><a href="#">Crate &amp; Barrel</a></td>
+									<td class="checkbox"><input type="checkbox" id="addToMyKnot" name="addToMyKnot" />
+								</tr>
+							</tbody>
+						</table>
+						
+						<nav class="pagination">
+							1 <a href="#">2</a> <a href="#">3</a> <a href="#">Next</a> &gt;
+						</nav>
+					
+						<p class="submit">
+							<button>Update</button>
+							and return to My Knot
+						</p>
+					</form>
+					
 					<div class="closeContainer"><span class="close">x</span></div>
 
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<!--Modal 3/4 - warnings and notifications-->
+		<div class="modal show notification" id="modal3">
+			<div class="ie-shadow">
+				<div class="shadow">
+					<h1>Are you sure you want to cancel?</h1>
+					
+					<p>Any unsaved changes will be lost.</p>
+					
+					<p class="submit">
+						<button>Yes</button>
+						<button>No</button>
+					</p>
+					<div class="closeContainer"><span class="close">x</span></div>
+
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal show notification" id="modal4">
+			<div class="ie-shadow">
+				<div class="shadow">
+					<h1>Your changes have been saved.</h1>
+					
+					<div class="closeContainer"><span class="close">x</span></div>
+
+				</div>
+			</div>
+		</div>
 	
 	<script src="http://media.theknot.com/jscripts/jquery/jquery-1.4.2.min.js"></script>
 
