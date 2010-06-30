@@ -184,9 +184,8 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	<!--Modal 3/4 - warnings and notifications-->
+		
+		<!--Modal 3/4 - warnings and notifications-->
 		<div class="modal show notification" id="modal3">
 			<div class="ie-shadow">
 				<div class="shadow">
@@ -216,6 +215,14 @@
 		</div>
 	
 	<script src="http://media.theknot.com/jscripts/jquery/jquery-1.4.2.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			//Close functionality example using jQuery
+			$('.modal').find('.close').click(function(){
+				$(this).closest('.modal').toggleClass('show');
+			});
+		});
+	</script>
 
 </body>
 

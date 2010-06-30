@@ -1,10 +1,12 @@
 .modal{
   background-color:rgba(0,0,0,.15);
+	display:none;/*Hidden by default*/
   overflow:hidden;
   position:fixed;
   top:150px;left:50%;/*This prevents collision with z-indexing in the header; horizontal left offset must be handled case-by-case due to differing modal widths*/
   z-index:15;
 }
+	.show{display:block !important;}/*Show the modal if this class is present*/
   .modal .shadow{
   	background-color:#fff;
     border:2px solid #999;
